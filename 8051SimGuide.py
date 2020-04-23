@@ -6,18 +6,18 @@ def clear():
         _ = os.system('cls')  
     else: 
         _ = os.system('clear') 
-
-def lineMarker(maxMarker):
-    print("\t\t",end=" ")
-    for i in range(0,maxMarker):
-        print("-",end="")
-
+	
 def tabs(maxtabs):
     retab = ""
     for i in range(0,maxtabs):
         retab = retab + "\t"
 
     return retab
+
+def lineMarker(maxMarker):
+    print(tabs(2),end=" ")
+    for i in range(0,maxMarker):
+        print("-",end="")
 
 def FirstScreen():
     print(pyfiglet.figlet_format("   8051SIM", font = "nancyj-fancy"))
