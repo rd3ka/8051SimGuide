@@ -4,12 +4,6 @@ from zipfile import ZipFile
 
 from sys import platform, maxsize
 
-__all__ = [
-    "Code",
-    "hilite_me",
-    "insert_line_numbers_in_html",
-]
-
 _IS_WINDOWS = os.name == 'nt'
 _UNPACK200 = 'unpack200.exe' if _IS_WINDOWS else 'unpack200'
 _UNPACK200_ARGS = '-r -v -l ""' if _IS_WINDOWS else ''
