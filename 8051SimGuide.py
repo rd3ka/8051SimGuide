@@ -5,11 +5,6 @@ from zipfile import ZipFile
 from sys import platform, maxsize
 
 _IS_WINDOWS = os.name == 'nt'
-_UNPACK200 = 'unpack200.exe' if _IS_WINDOWS else 'unpack200'
-_UNPACK200_ARGS = '-r -v -l ""' if _IS_WINDOWS else ''
-_USER_DIR = os.path.expanduser('~')
-_JRE_DIR = os.path.join(_USER_DIR, '.jre')
-_JDK_DIR = os.path.join(_USER_DIR, '.jdk')
 
 OS = 'windows' if _IS_WINDOWS else platform
 ARCH = 'x64' if maxsize > 2**32 else 'x32'
