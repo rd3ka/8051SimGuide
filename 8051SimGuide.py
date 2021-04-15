@@ -9,13 +9,16 @@ def clear():
 	
 def tabs(maxtabs):
     retab = ""
+
     for i in range(0,maxtabs):
         retab = retab + "\t"
 
     return retab
 
 def lineMarker(maxMarker):
+
     print(tabs(2),end=" ")
+
     for i in range(0,maxMarker):
         print("-",end="")
 
