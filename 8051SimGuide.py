@@ -56,8 +56,8 @@ def dprint(text):
     lineMarker(73)
     print("\n")
 #----------------------------------------------------------x-----------------------------------------------------------#
-def CreateNewFolder(FolderName):
-    directory = FolderName
+def CreateNewFolder(folderName):
+    directory = folderName
     parent_dir = os.path.abspath(os.getcwd())
     path = os.path.join(parent_dir,directory)
     try:
