@@ -29,7 +29,7 @@ function p1() {
         find ./.data -name JRE > /dev/null 2>&1 
         if [ $? -ne 0 ]; then
             ic
-            curl $RT_DOWN -o "$fname"
+            curl --progress-bar $RT_DOWN -o "$fname" | tee /dev/null
             tar xf $fname && rm $fname 
             mv zulu17.38.21-ca-jre17.0.5-linux_x64 JRE
         else 
@@ -73,9 +73,9 @@ function main() {
 
     if [ -d ".data" ]; then
         [ $retp2 -eq 0 ] && execute $retp1 || exit 0 
-        rm -rf $(ls -I run.sh)
+        rm -rf $(ls -I 8051SimGuide*)
     else 
-        mkdir .data && mv $(ls -I run.sh) .data 
+        mkdir .data && mv $(ls -I 8051SimGuide*) .data 
         [ $retp2 -eq 0 ] && execute $retp1 || exit 0 
     fi
 }
