@@ -19,7 +19,8 @@ function greetings() {
     echo "This script automates the download and installation of edsim51di";
     echo ""
 
-    read -p "Hit ENTER to continue"
+    read -p "Hit ENTER to continue";
+    echo ""
 }
 
 function p1() {
@@ -29,6 +30,7 @@ function p1() {
         find ./.data -name JRE > /dev/null 2>&1 
         if [ $? -ne 0 ]; then
             ic
+            echo "Getting JavaRunTime Ready!"
             curl --progress-bar $RT_DOWN -o "$fname" | tee /dev/null
             tar xf $fname && rm $fname 
             mv zulu17.38.21-ca-jre17.0.5-linux_x64 JRE
@@ -49,7 +51,8 @@ function p2() {
         retV=0
     else
         ic
-        curl $SIM_DOWN -o "edsim51di.zip"
+        echo "Setting up edsim51di"
+        curl -progress-bar $SIM_DOWN -o "edsim51di.zip" | tee /dev/null
         unzip edsim51di.zip && rm edsim51di.zip
         retV=0
     fi
@@ -65,6 +68,7 @@ function execute() {
 }
 
 function main() {
+    clear
     greetings
     p1 
     retp1=$?
@@ -73,9 +77,9 @@ function main() {
 
     if [ -d ".data" ]; then
         [ $retp2 -eq 0 ] && execute $retp1 || exit 0 
-        rm -rf $(ls -I 8051SimGuide*)
+        rm -rf *.ser 
     else 
-        mkdir .data && mv $(ls -I 8051SimGuide*) .data 
+        mkdir .data && mv JRE edsim51di .data 
         [ $retp2 -eq 0 ] && execute $retp1 || exit 0 
     fi
 }
