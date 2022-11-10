@@ -4,7 +4,22 @@ RT_DOWN="https://cdn.azul.com/zulu/bin/zulu17.38.21-ca-jre17.0.5-linux_x64.tar.g
 SIM_DOWN="http://www.edsim51.com/8051simulator/edsim51di.zip"
 
 function ic() {
-    ping -c 2 1.1.1.1 > dev/null 2>&1  && echo "Internet Connectivity Available" || exit 1
+    ping -c 2 1.1.1.1 > /dev/null 2>&1  && echo "Internet Connectivity Available" || exit 1
+}
+
+function greetings() {
+    echo "";    
+    echo " █████╗  ██████╗ ███████╗ ██╗███████╗██╗███╗   ███╗ ██████╗ ██╗   ██╗██╗██████╗ ███████╗";
+    echo "██╔══██╗██╔═████╗██╔════╝███║██╔════╝██║████╗ ████║██╔════╝ ██║   ██║██║██╔══██╗██╔════╝";
+    echo "╚█████╔╝██║██╔██║███████╗╚██║███████╗██║██╔████╔██║██║  ███╗██║   ██║██║██║  ██║█████╗  ";
+    echo "██╔══██╗████╔╝██║╚════██║ ██║╚════██║██║██║╚██╔╝██║██║   ██║██║   ██║██║██║  ██║██╔══╝  ";
+    echo "╚█████╔╝╚██████╔╝███████║ ██║███████║██║██║ ╚═╝ ██║╚██████╔╝╚██████╔╝██║██████╔╝███████╗";
+    echo " ╚════╝  ╚═════╝ ╚══════╝ ╚═╝╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚═╝╚═════╝ ╚══════╝";
+    echo "                                                                                        ";
+    echo "This script automates the download and installation of edsim51di";
+    echo ""
+
+    read -p "Hit ENTER to continue"
 }
 
 function p1() {
@@ -50,6 +65,7 @@ function execute() {
 }
 
 function main() {
+    greetings
     p1 
     retp1=$?
     p2
