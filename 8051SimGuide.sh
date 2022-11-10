@@ -52,7 +52,7 @@ function p2() {
     else
         ic
         echo "Setting up edsim51di"
-        curl -progress-bar $SIM_DOWN -o "edsim51di.zip" | tee /dev/null
+        curl --progress-bar $SIM_DOWN -o "edsim51di.zip" | tee /dev/null
         unzip edsim51di.zip && rm edsim51di.zip
         retV=0
     fi
@@ -77,11 +77,11 @@ function main() {
 
     if [ -d ".data" ]; then
         [ $retp2 -eq 0 ] && execute $retp1 || exit 0 
-        rm -rf *.ser 
     else 
         mkdir .data && mv JRE edsim51di .data 
         [ $retp2 -eq 0 ] && execute $retp1 || exit 0 
     fi
+    rm -rf *.ser
 }
 
 main
