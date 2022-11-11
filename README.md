@@ -31,7 +31,8 @@ Note: Setting up a `venv`
 i.e virtual environtment is recommended
 
 ## Screenshots
-8051SimGuide.py
+[8051SimGuide.py](https://github.com/rd3ka/8051SimGuide/blob/master/8051SimGuide.py)
+
 ![screenshot_01](https://user-images.githubusercontent.com/44165144/201349573-15e1c031-5dfc-4128-8658-e59ed6d6fce6.png)
 
 
