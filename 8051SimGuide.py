@@ -11,6 +11,18 @@ OS = "windows" if _WIN else platform
 ARCH = "x64" if maxsize > 2**32 else "x86"
 
 
+def greeting():
+    print(r"""
+   ___   ___  _____ __  _____ _            _____       _     _      
+  / _ \ / _ \| ____/_ |/ ____(_)          / ____|     (_)   | |     
+ | (_) | | | | |__  | | (___  _ _ __ ___ | |  __ _   _ _  __| | ___ 
+  > _ <| | | |___ \ | |\___ \| | '_ ` _ \| | |_ | | | | |/ _` |/ _ \
+ | (_) | |_| |___) || |____) | | | | | | | |__| | |_| | | (_| |  __/
+  \___/ \___/|____/ |_|_____/|_|_| |_| |_|\_____|\__,_|_|\__,_|\___|
+                                                                    
+    """)
+    input("HIT ENTER to continue")
+
 class customProgressBar:
     def __init__(self):
         self.pbar = None
@@ -59,12 +71,14 @@ def _task(Filename, mode):
     URL = getDwnURL(mode=mode)
     dwnUFn(URL, Filename)
     unzip(Filename)
-    os.system("rm {Filename}")
+    os.system(f"rm -rf {Filename}")
     Filename = Filename[0:-4]
     os.system(f"mv {Filename} .data/")
 
 
 def main():
+    os.system("clear")
+    greeting()
     buildDir()
     command = ""
     _filename = f"zulu17.38.21-ca-jre17.0.5-{OS}_{ARCH}"
