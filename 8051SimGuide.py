@@ -84,14 +84,14 @@ def main():
     _filename = f"zulu17.38.21-ca-jre17.0.5-{OS}_{ARCH}"
     _efilename = "edsim51di"
 
-    if os.system("ls .data/edsim51di") == 0:
+    if os.system("ls .data/edsim51di > /dev/null 2>&1") == 0:
         print(f"{_efilename} already configured")
     else:
         print("Getting edsim51 ready!")
         _task(_efilename + ".zip", 2)
 
-    if os.system("java --version") != 0:
-        if os.system(f"ls .data/{_filename}") == 0:
+    if os.system("java --version > /dev/null 2>&1") != 0:
+        if os.system(f"ls .data/{_filename} > /dev/null 2>&1") == 0:
             print(f"{_filename} found, skipping")
         else:
             print("Getting Java Run Time")
