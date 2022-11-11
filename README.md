@@ -4,24 +4,22 @@
 This project, rather this script, started off as a form of
 help that I wanted to offer to my fellow University mates back during Engineering School.
 We had a subject called Microcontrollers and Microprocessor (ECC403) in our curriculum. We had to deal with a
-simulator which would simulate the working of 8051 Microcontroller. This emulator edsim51di was written in java.
+simulator which would simulate the working of 8051 Microcontroller. This simulator edsim51di was written in java.
 
-And most of my peers found it difficult to run this piece of software as it was a jar file and required some command line tinkering.
-As most programmers who are starting out, they were petrified from the command line. And did not know how they'd 
-run this simulator. This is when, using the power of automation and my little knowledge of Operating System, I made the 8051SimGuide Script
+And most of my peers found it difficult to run this piece of software as it was packaged as a jar file and required some command line tinkering. As most programmers who are starting out, they were petrified from the command line. They found it difficult to run this simulator. This is when, using the power of automation and my little knowledge of Operating System, I made the 8051SimGuide Script
 
 
-## **UPDATE** : Check Branch [v2](https://github.com/rd3ka/8051SimGuide/tree/v2)
+## **UPDATE** 
+Branch [v2](https://github.com/rd3ka/8051SimGuide/tree/v2) contains the new version of this script
 
 
 ## Installation & Dependencies
 
 This python script is 95% pure i.e does not use any external 
-librabies expect for one, ['ProgressBar'](https://pypi.org/project/progressbar2/)
+libraries expect for one, ['ProgressBar'](https://pypi.org/project/progressbar2/)
 
-Master Branch:
 
-To run the unpackaged script install via pip
+To run the unpackaged script, install the below dependencies via pip/easy
 ```bash
   pip install progressbar2
 ```
@@ -29,6 +27,8 @@ If pip is not available, use easy
 ```bash
   easy_install progressbar2
 ```
+Note: Setting up a `venv`
+i.e virtual environtment is recommended
 
 ## Screenshots
 8051SimGuide.py
@@ -38,5 +38,6 @@ If pip is not available, use easy
 ## Authors
 
 - [@rd](https://www.github.com/rd3ka)
+- [@Maskgirl](https://github.com/Maskgirl)
 
 
