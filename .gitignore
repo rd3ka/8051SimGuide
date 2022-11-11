@@ -1,7 +1,5 @@
 .git
-jdk
-**.zip
-**.ser
-StuffYouShouldNeverCare
+.data
+venv
 
 
