@@ -8,7 +8,6 @@ function connection() {
     return $t
 }
 
-
 function find($command) { 
     $r=(Get-ChildItem -Recurse | Where {$_.Name -eq $command} | Select BaseName)
     if ($r -ne $null) {
@@ -37,18 +36,19 @@ function Test-CommandExists($command) {
 } 
 
 function p1() {
-    $fname='zulu17.38.21-ca-jre17.0.5-win_x64.tar.gz'
-    $check=Test-CommandExists 'java --version'
+    $fname = 'zulu17.38.21-ca-jre17.0.5-win_x64'
+    $check = Test-CommandExists 'java --version'
 
     if ( $check.Contains('not') ) {
         
         $fc = find 'bin'   
 
         if (!$fc) {
-            Start-BitsTransfer -Source $runtime -Destination $fname
-            tar.exe xf $fname; rm $fname
+            $filename = $fname + '.tar.gz'
+            Start-BitsTransfer -Source $runtime -Destination $filename
+            tar.exe xf $filename; rm $filename
             
-            $src = $PWD.Path + '\' + 'zulu17.38.21-ca-jre17.0.5-win_x64'
+            $src = $PWD.Path + '\' + $fname
             Rename-Item $src JRE
 
             $src = $PWD.Path + '\' + 'JRE'
@@ -65,15 +65,17 @@ function p1() {
 }
 
 function p2() {
-    $f = find 'edsim51di'
+    $fname = 'edsim51di'
+    $f = find $fname
     if ($f) {
         echo "edSim51di already downloaded, skipping"
     }
     else {
-        Start-BitsTransfer -Source $sim -Destination 'edsim51di.zip'
-        Expand-Archive -Force edsim51di.zip; rm edsim51di.zip
+        $filename = $fname + '.zip'
+        Start-BitsTransfer -Source $sim -Destination $filename
+        Expand-Archive -Force $filename; rm $filename
 
-        $src = $PWD.Path + '\' + 'edsim51di'
+        $src = $PWD.Path + '\' + $fname
         Move-Item $src data
 
     }
@@ -88,12 +90,15 @@ function execute($val) {
     }
 }
 
-function main() {
+function terminateExp() {
     $a = (New-Object -comObject Shell.Application).Windows() | ? { $_.FullName -ne $null} | ? { $_.FullName.toLower().Endswith('\explorer.exe') }
     $a | % {  $_.Quit() }
+}
 
+function main() {
+    terminateExp
     $e = connection
-
+   
     if (!$e) {
         echo 'Please connect to the Internet and try again'
         exit
@@ -111,7 +116,8 @@ function main() {
         p1
         p2
         execute 0
-    }    
+    }
+    rm -Recurse *.ser
 }
 
 main
