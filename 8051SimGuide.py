@@ -19,11 +19,12 @@ def greeting():
   > _ <| | | |___ \ | |\___ \| | '_ ` _ \| | |_ | | | | |/ _` |/ _ \
  | (_) | |_| |___) || |____) | | | | | | | |__| | |_| | | (_| |  __/
   \___/ \___/|____/ |_|_____/|_|_| |_| |_|\_____|\__,_|_|\__,_|\___|
-                                                                    
     """)
     input("HIT ENTER to continue")
 
+
 class customProgressBar:
+
     def __init__(self):
         self.pbar = None
 
@@ -43,22 +44,19 @@ class customProgressBar:
 def getDwnURL(os: str = OS, arch: str = ARCH, mode: int = 1) -> str:
     lurl = [
         f"https://cdn.azul.com/zulu/bin/zulu17.38.21-ca-jre17.0.5-{os}_{arch}.zip",
-        f"http://www.edsim51.com/8051simulator/edsim51di.zip",
+        "http://www.edsim51.com/8051simulator/edsim51di.zip",
     ]
 
     return lurl[0] if mode == 1 else lurl[1]
 
 
-def dwnUFn(url, filename):
-    urllib.request.urlretrieve(url, filename, customProgressBar())
+downFunc = lambda url, filename: urllib.request.urlretrieve(
+    url, filename, customProgressBar())
 
 
 def buildDir():
-    if OS == "linux":
-        os.makedirs(".data", exist_ok=True)
-    else:
-        os.makedirs("data/", exist_ok=True)
-        os.system("attrib +h data")
+    os.system("clear")
+    os.makedirs(".data", exist_ok=True)
 
 
 def unzip(filename):
@@ -69,7 +67,7 @@ def unzip(filename):
 
 def _task(Filename, mode):
     URL = getDwnURL(mode=mode)
-    dwnUFn(URL, Filename)
+    downFunc(URL, Filename)
     unzip(Filename)
     os.system(f"rm -rf {Filename}")
     Filename = Filename[0:-4]
@@ -77,21 +75,26 @@ def _task(Filename, mode):
 
 
 def main():
-    os.system("clear")
-    greeting()
     buildDir()
+    greeting()
+
     command = ""
+
     _filename = f"zulu17.38.21-ca-jre17.0.5-{OS}_{ARCH}"
     _efilename = "edsim51di"
 
-    if os.system("ls .data/edsim51di > /dev/null 2>&1") == 0:
+    findfile = lambda folder, filename: os.system(
+        "ls {folder}/{filename} > /dev/null 2>&1")
+
+    if findfile('.data', _efilename) == 0:
         print(f"{_efilename} already configured")
     else:
         print("Getting edsim51 ready!")
         _task(_efilename + ".zip", 2)
 
     if os.system("java --version > /dev/null 2>&1") != 0:
-        if os.system(f"ls .data/{_filename} > /dev/null 2>&1") == 0:
+
+        if findfile('.data', _filename) == 0:
             print(f"{_filename} found, skipping")
         else:
             print("Getting Java Run Time")
